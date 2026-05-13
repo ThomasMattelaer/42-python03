@@ -52,7 +52,20 @@ if __name__ == "__main__":
     print(f"Player Bob: {bob_sets}")
     print(f"Player charlie: {charlie_sets}")
     print(f"Player dylan: {dylan_sets}\n")
-    print("All distinct achievements:" +
-          f"{alice_sets.difference(bob_sets, charlie_sets, dylan_sets)}\n")
-    print("Common achievements:" +
+    print("All distinct achievements: " +
+          f"{alice_sets.union(bob_sets, charlie_sets, dylan_sets)}\n")
+    print("Common achievements: " +
           f"{alice_sets.intersection(bob_sets, charlie_sets, dylan_sets)}\n")
+    print("Only Alice has: " +
+          f"{alice_sets.difference(bob_sets, charlie_sets, dylan_sets)}")
+    print("Only Bob has: " +
+          f"{bob_sets.difference(bob_sets, charlie_sets, dylan_sets)}")
+    print("Only Charlie has: " +
+          f"{charlie_sets.difference(bob_sets, charlie_sets, dylan_sets)}")
+    print("Only Dylan has: " +
+          f"{dylan_sets.difference(bob_sets, charlie_sets, dylan_sets)}\n")
+    union = alice_sets.union(bob_sets, charlie_sets, dylan_sets)
+    print(f"Alice is missing: {union.difference(alice_sets)}")
+    print(f"Bob is missing: {union.difference(bob_sets)}")
+    print(f"Charlie is missing: {union.difference(charlie_sets)}")
+    print(f"Dylan is missing: {union.difference(dylan_sets)}")
