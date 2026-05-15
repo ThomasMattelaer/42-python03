@@ -1,7 +1,7 @@
 import random
 
 
-def gen_player_achievements() -> set:
+def gen_player_achievements() -> set[str]:
     achievements = [
         "World Savior",
         "Crafting Genius",
@@ -35,7 +35,7 @@ def gen_player_achievements() -> set:
         "True Hero"
     ]
     number = random.randint(3, 9)
-    player_set: set = set()
+    player_set: set[str] = set()
     while (number != 0):
         player_set.add(achievements[random.randint(0, len(achievements) - 1)])
         number -= 1
@@ -50,8 +50,8 @@ if __name__ == "__main__":
     dylan_sets = gen_player_achievements()
     print(f"Player Alice: {alice_sets}")
     print(f"Player Bob: {bob_sets}")
-    print(f"Player charlie: {charlie_sets}")
-    print(f"Player dylan: {dylan_sets}\n")
+    print(f"Player Charlie: {charlie_sets}")
+    print(f"Player Dylan: {dylan_sets}\n")
     print("All distinct achievements: " +
           f"{alice_sets.union(bob_sets, charlie_sets, dylan_sets)}\n")
     print("Common achievements: " +

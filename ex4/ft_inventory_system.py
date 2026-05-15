@@ -1,9 +1,9 @@
 import sys
 
 
-def ft_inventory_system() -> dict:
+def ft_inventory_system() -> dict[str, int]:
     argc = len(sys.argv)
-    inventory_dict: dict = {}
+    inventory_dict: dict[str, int] = {}
     i = 1
     while (i < argc):
         try:
@@ -27,9 +27,8 @@ if __name__ == "__main__":
     inventory_dict = ft_inventory_system()
     item_list = list(inventory_dict.keys())
     sum = sum(inventory_dict.values())
-    max_key = max(inventory_dict.values())
-    min_key = min(inventory_dict.values())
-
+    max_values = 0
+    min_values = float('inf')
     print("=== Inventory System Analysis ===")
     print(f"Got inventory: {inventory_dict}")
     print(f"Item list: {item_list}")
@@ -37,10 +36,12 @@ if __name__ == "__main__":
     for key in inventory_dict:
         percentage = round((inventory_dict[key] / sum) * 100, 1)
         print(f"Item {key} represents {percentage}%")
-        if (inventory_dict[key] == max_key):
+        if (inventory_dict[key] >= max_values):
             max_key = key
-        if (inventory_dict[key] == min_key):
+            max_values = inventory_dict[key]
+        if (inventory_dict[key] <= min_values):
             min_key = key
+            min_values = inventory_dict[key]
     print(f"Item most abundant: {max_key}" +
           f" with quantity {inventory_dict[max_key]}")
     print(f"Item least abundant: {min_key}" +

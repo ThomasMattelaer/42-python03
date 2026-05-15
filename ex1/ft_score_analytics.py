@@ -3,7 +3,7 @@ import sys
 
 def ft_score_analytics() -> None:
     argc = len(sys.argv)
-    tab = []  # type: list
+    tab: list[int] = []
     i = 1
     print("===Player Score Analytics ===\n")
     while (i < argc):

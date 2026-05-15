@@ -1,14 +1,14 @@
 import math
 
 
-def get_player_pos() -> tuple:
+def get_player_pos() -> tuple[float, float, float]:
     while (1):
         try:
             i = 0
             input_coord = input("Enter new coordinates as floats in format"
                                 + "'x,y,z':")
             splitted = input_coord.split(',')
-            result = []  # type list
+            result: list[float] = []
             error = False
             for element in splitted:
                 i += 1
@@ -19,7 +19,7 @@ def get_player_pos() -> tuple:
                     error = True
             if (error):
                 continue
-            coord = tuple(result)
+            coord = (result[0], result[1], result[2])
             if (i != 3):
                 raise ValueError
             print(f"{coord}")
