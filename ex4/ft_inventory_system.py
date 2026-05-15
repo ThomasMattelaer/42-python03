@@ -6,12 +6,44 @@ def ft_inventory_system() -> dict:
     inventory_dict: dict = {}
     i = 1
     while (i < argc):
-        splitted = sys.argv[i].split(":")
-        inventory_dict[splitted[0]] = int(splitted[1])
+        try:
+            splitted = sys.argv[i].split(":")
+            if (splitted[0] in inventory_dict):
+                raise ValueError(f"Redundant item: '{splitted[0]}'" +
+                                 "- discarding")
+            if (len(splitted) != 2):
+                raise ValueError(f"Error - Invalid parameter {sys.argv[i]}")
+            try:
+                inventory_dict[splitted[0]] = int(splitted[1])
+            except ValueError as e:
+                print(f"Quantity Error: {e}")
+        except ValueError as e:
+            print(f"{e}")
         i += 1
-    print(f"{inventory_dict}")
     return inventory_dict
 
 
 if __name__ == "__main__":
-    ft_inventory_system()
+    inventory_dict = ft_inventory_system()
+    item_list = list(inventory_dict.keys())
+    sum = sum(inventory_dict.values())
+    max_key = max(inventory_dict.values())
+    min_key = min(inventory_dict.values())
+
+    print("=== Inventory System Analysis ===")
+    print(f"Got inventory: {inventory_dict}")
+    print(f"Item list: {item_list}")
+    print(f"Total quantity of the {len(item_list)} items: {sum}")
+    for key in inventory_dict:
+        percentage = round((inventory_dict[key] / sum) * 100, 1)
+        print(f"Item {key} represents {percentage}%")
+        if (inventory_dict[key] == max_key):
+            max_key = key
+        if (inventory_dict[key] == min_key):
+            min_key = key
+    print(f"Item most abundant: {max_key}" +
+          f" with quantity {inventory_dict[max_key]}")
+    print(f"Item least abundant: {min_key}" +
+          f" with quantity {inventory_dict[min_key]}")
+    inventory_dict.update({"magic_item": 15})
+    print(f"Updated inventory: {inventory_dict}")
