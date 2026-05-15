@@ -1,7 +1,7 @@
 import math
 
 
-def get_player_pos() -> tuple[float, float, float]:
+def get_player_pos() -> tuple[float, ...]:
     while (1):
         try:
             i = 0
@@ -19,7 +19,7 @@ def get_player_pos() -> tuple[float, float, float]:
                     error = True
             if (error):
                 continue
-            coord = (result[0], result[1], result[2])
+            coord = tuple(result)
             if (i != 3):
                 raise ValueError
             print(f"{coord}")
